@@ -1,0 +1,63 @@
+#include "reversi.h"
+
+FORM ID FormMain AT (0 0 160 160)
+USABLE
+MENUID MainMenu
+BEGIN
+	TITLE "Reversi"
+END
+
+FORM ID FormNewGame AT (2 2 156 156)
+USABLE
+MODAL
+BEGIN
+	TITLE "New Game"
+	LABEL "Warning: By creating a new game," AUTOID AT (4 16)
+	LABEL "the current game state will be lost" AUTOID AT (4 PrevBottom+2)
+	LABEL "Game options:" AUTOID AT (4 PrevBottom+4) FONT 1
+	LABEL "Game Mode:" AUTOID AT (4 PrevBottom+2)
+	LIST "Player vs Player" "Player vs Computer" ID NewGameListGameMode AT (4 PrevBottom+2 148 AUTO) VISIBLEITEMS 2
+	BUTTON "Cancel" ID NewGameButtonCancel AT (4 140 AUTO AUTO)
+	BUTTON "OK" ID NewGameButtonOk AT (127 140 AUTO AUTO)
+END
+
+ALERT ID AlertDebug
+INFORMATION
+BEGIN
+	TITLE "Debug"
+	MESSAGE "^1"
+	BUTTONS "OK"
+END
+
+ALERT ID AlertGameOver
+INFORMATION
+BEGIN
+	TITLE "Game Over"
+	MESSAGE "^1 (^2 : ^3)"
+	BUTTONS "OK"
+END
+
+MENU ID MainMenu
+BEGIN
+	PULLDOWN "Options"
+	BEGIN
+		MENUITEM "New Game" ID MainMenuOptionsNewGame "N"
+		MENUITEM "Reset Game" ID MainMenuOptionsResetGame "R"
+		MENUITEM "Enable Hints" ID MainMenuOptionsEnableHints "E"
+		MENUITEM "Disable Hints" ID MainMenuOptionsDisableHints "D"
+		MENUITEM "Undo" ID MainMenuOptionsUndo "U"
+		MENUITEM "About" ID MainMenuOptionsAbout "A"
+	END
+END
+
+FORM ID FormAbout AT (2 2 156 156)
+USABLE
+MODAL
+BEGIN
+	TITLE "About"
+	FIELD ID AboutFieldText AT (4 16 152 122) LEFTALIGN FONT 0 NONEDITABLE MULTIPLELINES MAXCHARS 128
+	BUTTON "Done" ID AboutButtonReturn AT (4 140 AUTO AUTO)
+END
+
+ICON "icon.bmp"
+APPLICATIONICONNAME ID 1000 "Reversi"
